@@ -8,19 +8,19 @@ The “Fundamentals and Core Concepts of React” project is designed to introdu
 
 1. Understanding the Basics of React:
 
-- - Learn what React JS is and why it is a valuable tool for web development.
-- - Gain knowledge on how to get started with React and set up a new React application.
+   - Learn what React JS is and why it is a valuable tool for web development.
+   - Gain knowledge on how to get started with React and set up a new React application.
 
 2. Familiarize with ReactDOM and JSX:
 
-- - Understand the role of ReactDOM in React applications.
-- - Learn how to use JSX to create and structure UI components.
+   - Understand the role of ReactDOM in React applications.
+   - Learn how to use JSX to create and structure UI components.
 
 # Create and Manage React Components
 
--- Develop various types of React components, including functional components
+    - Develop various types of React components, including functional components
 
--- Understand the component lifecycle and how to manage component states and props.
+    - Understand the component lifecycle and how to manage component states and props.
 
 # React + Vite
 
