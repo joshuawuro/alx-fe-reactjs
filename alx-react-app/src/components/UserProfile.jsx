@@ -1,4 +1,4 @@
-export default function UserProfile(props) {
+function UserProfile(props) {
   return (
     <div>
       <h2>{props.name}</h2>
@@ -7,3 +7,5 @@ export default function UserProfile(props) {
     </div>
   );
 }
+
+export default UserProfile;
