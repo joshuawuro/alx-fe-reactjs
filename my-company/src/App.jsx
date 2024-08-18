@@ -3,7 +3,7 @@ import Home from "./assets/components/Home";
 import About from "./assets/components/About";
 import Services from "./assets/components/Services";
 import Contact from "./assets/components/Contact";
-import Navbar from "./assets/Navbar";
+import Navbar from "./assets/components/Navbar";
 
 function App() {
   return (
