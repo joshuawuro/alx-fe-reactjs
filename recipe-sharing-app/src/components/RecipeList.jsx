@@ -1,34 +1,71 @@
-// src/components/RecipeList.jsx
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
-import { useRecipeStore } from "../recipeStore";
+// src/recipeStore.js
+import create from "zustand";
 
-const RecipeList = () => {
-  const filteredRecipes = useRecipeStore((state) => state.filteredRecipes);
-  const filterRecipes = useRecipeStore((state) => state.filterRecipes);
-  const searchTerm = useRecipeStore((state) => state.searchTerm);
+const useRecipeStore = create((set) => ({
+  recipes: [],
+  favorites: [], // Store user's favorite recipe IDs
 
-  useEffect(() => {
-    filterRecipes();
-  }, [searchTerm, filterRecipes]);
+  // Action to add a recipe to favorites
+  addFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: [...state.favorites, recipeId],
+    })),
 
-  return (
-    <div>
-      {filteredRecipes.length > 0 ? (
-        filteredRecipes.map((recipe) => (
-          <div key={recipe.id}>
-            <h3>
-              <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>{" "}
-              {/* Link to recipe details */}
-            </h3>
-            <p>{recipe.description}</p>
-          </div>
-        ))
-      ) : (
-        <p>No recipes found</p>
-      )}
-    </div>
-  );
-};
+  // Action to remove a recipe from favorites
+  removeFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: state.favorites.filter((id) => id !== recipeId),
+    })),
 
-export default RecipeList;
+  recommendations: [], // Store recommended recipes
+
+  // Action to generate recommendations
+  generateRecommendations: () =>
+    set((state) => {
+      // Mock implementation: recommend recipes based on favorites
+      const recommended = state.recipes.filter(
+        (recipe) => state.favorites.includes(recipe.id) && Math.random() > 0.5
+      );
+      return { recommendations: recommended };
+    }),
+
+  // Action to add recipes (example implementation for testing recommendations)
+  addRecipe: (newRecipe) =>
+    set((state) => ({
+      recipes: [...state.recipes, newRecipe],
+      // Generate recommendations when a new recipe is added
+      recommendations: state.favorites.includes(newRecipe.id)
+        ? state.recipes.filter(
+            (recipe) =>
+              state.favorites.includes(recipe.id) && Math.random() > 0.5
+          )
+        : state.recommendations,
+    })),
+
+  // Action to update a recipe
+  updateRecipe: (updatedRecipe) =>
+    set((state) => ({
+      recipes: state.recipes.map((recipe) =>
+        recipe.id === updatedRecipe.id ? updatedRecipe : recipe
+      ),
+      recommendations: state.recommendations,
+    })),
+
+  // Action to delete a recipe
+  deleteRecipe: (id) =>
+    set((state) => ({
+      recipes: state.recipes.filter((recipe) => recipe.id !== id),
+      filteredRecipes: state.recipes
+        .filter((recipe) => recipe.id !== id)
+        .filter((recipe) =>
+          recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+        ),
+      // Remove from favorites if deleted
+      favorites: state.favorites.filter((favoriteId) => favoriteId !== id),
+      recommendations: state.recommendations.filter(
+        (recipe) => recipe.id !== id
+      ),
+    })),
+}));
+
+export { useRecipeStore };
