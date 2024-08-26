@@ -3,27 +3,42 @@ import create from "zustand";
 
 const useRecipeStore = create((set) => ({
   recipes: [],
-  searchTerm: "", // Store the current search term
-  filteredRecipes: [], // Store the filtered recipes
+  favorites: [], // Store user's favorite recipe IDs
+  recommendations: [], // Store recommended recipes
 
-  // Action to set the search term
-  setSearchTerm: (term) => set({ searchTerm: term }),
-
-  // Action to filter recipes based on the search term
-  filterRecipes: () =>
+  // Action to add a recipe to favorites
+  addFavorite: (recipeId) =>
     set((state) => ({
-      filteredRecipes: state.recipes.filter((recipe) =>
-        recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-      ),
+      favorites: [...state.favorites, recipeId],
     })),
 
-  // Action to add new recipes
+  // Action to remove a recipe from favorites
+  removeFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: state.favorites.filter((id) => id !== recipeId),
+    })),
+
+  // Action to generate recommendations
+  generateRecommendations: () =>
+    set((state) => {
+      // Mock implementation: recommend recipes based on favorites
+      const recommended = state.recipes.filter(
+        (recipe) => state.favorites.includes(recipe.id) && Math.random() > 0.5
+      );
+      return { recommendations: recommended };
+    }),
+
+  // Action to add a new recipe
   addRecipe: (newRecipe) =>
     set((state) => ({
       recipes: [...state.recipes, newRecipe],
-      filteredRecipes: [...state.recipes, newRecipe].filter((recipe) =>
-        recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-      ),
+      // Generate recommendations when a new recipe is added
+      recommendations: state.favorites.includes(newRecipe.id)
+        ? state.recipes.filter(
+            (recipe) =>
+              state.favorites.includes(recipe.id) && Math.random() > 0.5
+          )
+        : state.recommendations,
     })),
 
   // Action to update a recipe
@@ -32,13 +47,7 @@ const useRecipeStore = create((set) => ({
       recipes: state.recipes.map((recipe) =>
         recipe.id === updatedRecipe.id ? updatedRecipe : recipe
       ),
-      filteredRecipes: state.recipes
-        .map((recipe) =>
-          recipe.id === updatedRecipe.id ? updatedRecipe : recipe
-        )
-        .filter((recipe) =>
-          recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-        ),
+      recommendations: state.recommendations,
     })),
 
   // Action to delete a recipe
@@ -50,6 +59,22 @@ const useRecipeStore = create((set) => ({
         .filter((recipe) =>
           recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
         ),
+      // Remove from favorites if deleted
+      favorites: state.favorites.filter((favoriteId) => favoriteId !== id),
+      recommendations: state.recommendations.filter(
+        (recipe) => recipe.id !== id
+      ),
+    })),
+
+  // State for search term and filtering
+  searchTerm: "",
+  setSearchTerm: (term) => set({ searchTerm: term }),
+  filteredRecipes: [],
+  filterRecipes: () =>
+    set((state) => ({
+      filteredRecipes: state.recipes.filter((recipe) =>
+        recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+      ),
     })),
 }));
 
