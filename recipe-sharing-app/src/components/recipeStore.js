@@ -6,6 +6,9 @@ const useRecipeStore = create((set) => ({
   favorites: [], // Store user's favorite recipe IDs
   recommendations: [], // Store recommended recipes
 
+  // Action to set or update the recipes list
+  setRecipes: (recipes) => set({ recipes }),
+
   // Action to add a recipe to favorites
   addFavorite: (recipeId) =>
     set((state) => ({
