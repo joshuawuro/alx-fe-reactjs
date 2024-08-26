@@ -1,6 +1,6 @@
-// AddRecipeForm component
+// src/components/AddRecipeForm.jsx
 import { useState } from "react";
-import { useRecipeStore } from "./recipeStore";
+import { useRecipeStore } from "../recipeStore";
 
 const AddRecipeForm = () => {
   const addRecipe = useRecipeStore((state) => state.addRecipe);
@@ -16,6 +16,7 @@ const AddRecipeForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h2>Add a New Recipe</h2>
       <input
         type="text"
         value={title}
