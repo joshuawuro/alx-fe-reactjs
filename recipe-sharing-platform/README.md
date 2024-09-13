@@ -1,6 +1,6 @@
 # Building React projects with Tailwind CSS
 
-![ui design of a food recipe app](/src/assets/food-recipe-app.jpg)
+![ui design of a food recipe app](./src/assets/food-recipe-app.jpg)
 
 In the “Building React Projects with Tailwind CSS” project, you will learn how to create a responsive and visually appealing Recipe Sharing Platform using React and Tailwind CSS.
 
@@ -32,7 +32,7 @@ By completing these tasks, you will gain practical experience in using Tailwind 
 
 # TASKS
 
-### 0. Setting Up a React Application for a Recipe Sharing Platform with Tailwind CSS `MANDATORY`
+## 0. Setting Up a React Application for a Recipe Sharing Platform with Tailwind CSS `MANDATORY`
 
 **Objective:** Begin building a Recipe Sharing Platform using React and Tailwind CSS. This task focuses on setting up the project foundation, including the creation of the React app, installing Tailwind CSS, and preparing a clean workspace for further development.
 
@@ -100,6 +100,63 @@ npm run dev
 ```
 
 - Check the browser to see if the app loads without any errors and Tailwind’s styles are applied (you can test by adding a Tailwind utility class like `text-blue-500` to a component).
+
+### Repo:
+
+- GitHub repository: `alx-fe-reactjs`
+- Directory: `recipe-sharing-platform`
+
+## 1. Building the Home Page of the Recipe Sharing Platform `MANDATORY`
+
+**Objective:** Develop the Home Page for the Recipe Sharing Platform using React and style it with Tailwind CSS. This page will display a list of recipes, each with a brief summary, an image, and a link to view the recipe in detail.
+
+## Task Description:
+
+This task involves creating a responsive Home Page that presents a list of recipes in an attractive and user-friendly layout. You will fetch mock data from a static JSON file and use Tailwind CSS to style the page.
+
+## Step 1: Create Mock Recipe Data
+
+- Prepare Mock Data:
+  - Create a `data.json` file in the src directory containing an array of recipe objects. Each recipe should have an `id`, `title`, `summary`, and `image` URL.
+  - Example JSON structure:
+
+```
+[
+  {
+    "id": 1,
+    "title": "Spaghetti Carbonara",
+    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
+    "image": "https://via.placeholder.com/150"
+  },
+  {
+    "id": 2,
+    "title": "Chicken Tikka Masala",
+    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
+    "image": "https://via.placeholder.com/150"
+  }
+]
+```
+
+## Step 2: Create the Home Page Component
+
+- Component Setup:
+  - Create a `HomePage` component in the `src/components` directory.
+  - Use the `useState` and `useEffect` hooks to load the recipe data from the `data.json` file into state when the component mounts.
+  - Display each recipe in a card layout, using Tailwind CSS for styling.
+
+## Step 3: Style the Home Page with Tailwind CSS
+
+- Styling Requirements:
+  - Use Tailwind CSS to style the Home Page. Each recipe card should:
+  - Display the recipe image, title, and summary.
+  - Have a consistent, responsive design that adapts to different screen sizes.
+  - Include hover effects to enhance interactivity, such as changing the shadow or scale.
+
+## Step 4: Responsive Layout Design
+
+- Implement a Responsive Grid:
+  - Arrange the recipe cards in a grid layout that adjusts column count based on the screen size using Tailwind’s responsive grid utilities.
+  - Ensure the grid layout is visually appealing and functional on both mobile and desktop views.
 
 ### Repo:
 
