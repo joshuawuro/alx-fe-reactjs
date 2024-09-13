@@ -19,7 +19,7 @@ function HomePage() {
     <>
       <div className="container mx-auto p-4 h-screen">
         <h2 className="font-bold text-center my-3">RECIPES</h2>
-        <div className="grid mobile:grid-cols-1 tablet::grid-cols-2 laptop:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {recipe.map((recipe) => (
             <div
               key={recipe.id}
