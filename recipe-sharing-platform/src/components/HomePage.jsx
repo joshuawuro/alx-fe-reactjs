@@ -23,7 +23,7 @@ function HomePage() {
           {recipe.map((recipe) => (
             <div
               key={recipe.id}
-              className="w-60 rounded overflow-hidden shadow-sm bg-white"
+              className="w-60 rounded overflow-hidden shadow-sm bg-white hover:bg-slate-100"
             >
               <img src={recipe.image} alt={recipe.title} className="w-full" />
               <div className="px-6 py-4">
