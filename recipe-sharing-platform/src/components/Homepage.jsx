@@ -1,7 +1,6 @@
-import { data } from "autoprefixer";
 import { useState, useEffect } from "react";
 
-function Homepage() {
+function HomePage() {
   const [recipe, setRecipe] = useState([]);
   useEffect(() => {
     async function fetchRecipes() {
@@ -41,4 +40,4 @@ function Homepage() {
   );
 }
 
-export default Homepage;
+export default HomePage;
