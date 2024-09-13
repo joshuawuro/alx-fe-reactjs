@@ -31,7 +31,7 @@ function Homepage() {
                 <h2 className="px-6 py-4 font-bold text-xl mb-2">
                   {recipe.title}
                 </h2>
-                <p className="text-gray-700 text-base">{recipe.summary}</p>
+                <p className="text-gray-700 text-sm">{recipe.summary}</p>
               </div>
             </div>
           ))}
