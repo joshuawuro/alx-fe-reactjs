@@ -162,3 +162,87 @@ This task involves creating a responsive Home Page that presents a list of recip
 
 - GitHub repository: `alx-fe-reactjs`
 - Directory: `recipe-sharing-platform`
+
+## 2. Building the Recipe Detail Page `MANDATORY`
+
+**Objective:** Create a Recipe Detail Page for the Recipe Sharing Platform that displays detailed information about each recipe when selected from the Home Page. The page will include ingredients, cooking instructions, and styled with Tailwind CSS to enhance readability and user engagement.
+
+## Task Description:
+
+This task involves developing a detailed view for each recipe. When a user clicks on a recipe card on the Home Page, they should be redirected to a Recipe Detail Page that provides more comprehensive information about the recipe, including ingredients and cooking steps.
+
+## Step 1: Setup Routing with React Router
+
+- React Router Integration:
+  - If not already set up, install React Router in your project: `bash npm install react-router-dom`
+  - Set up basic routing in your application. Modify the `App.js` to include routes:
+
+```
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './components/HomePage';
+import RecipeDetail from './components/RecipeDetail';
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/recipe/:id" element={<RecipeDetail />} />
+      </Routes>
+    </Router>
+  );
+}
+```
+
+## Step 2: Create the Recipe Detail Component
+
+- Component Creation:
+  - Create a RecipeDetail component that will fetch and display the recipe data based on the recipe ID from the URL.
+  - Fetch the recipe details from the data.json when the component mounts using the ID from the route parameters.
+  - Display detailed information such as ingredients, cooking instructions, and an image.
+
+## Step 3: Style the Recipe Detail Page with Tailwind CSS
+
+- Styling Requirements:
+  - Style the detail page to ensure it is visually appealing and maintains consistency with the Home Page design.
+  - Use Tailwind CSS for layout, typography, and responsive design:
+  - Ensure the text is readable with appropriate font sizes and spacing.
+  - Use cards or well-defined sections to display ingredients and steps.
+  - Implement a responsive design to ensure the page looks good on both mobile and desktop.
+
+### Repo:
+
+- GitHub repository: `alx-fe-reactjs`
+- Directory: `recipe-sharing-platform`
+
+## 3. Implementing a Responsive Form to Add New Recipes `mandatory`
+
+**Objective**: Create a responsive form in the Recipe Sharing Platform that allows users to submit new recipes, including fields for recipe title, ingredients, and preparation steps. The form should be styled with Tailwind CSS and include validations.
+
+## Task Description:
+
+This task involves building a form component that enables users to add new recipes to the platform. The form will be responsive, ensuring it works well on both mobile and desktop devices, and will use Tailwind CSS for styling to maintain a consistent look and feel with the rest of the application.
+
+## Step 1: Create the Add Recipe Form Component
+
+- Form Setup:
+  - Create a `AddRecipeForm` component in the `src/components` directory.
+  - Include input fields for the recipe title, ingredients (as a textarea), and preparation steps (also as a textarea).
+  - Add a submit button to post the form data.
+
+## Step 2: Implement Form Validation
+
+- Validation Logic:
+  - Implement simple front-end validation to ensure that all fields are filled out before the form can be submitted. You can use state to track the input values and validation status.
+  - Example validation checks might include ensuring no fields are empty and perhaps checking that the ingredients list includes at least two items.
+
+## Step 3: Style the Form with Tailwind CSS
+
+- Styling Requirements:
+  - Use Tailwind CSS to style the form fields, button, and overall layout. Ensure the form is visually appealing and matches the design language of the other pages.
+  - Make the form responsive, adjusting layout and elements’ sizes based on the screen size.
+
+### Repo:
+
+- GitHub repository: `alx-fe-reactjs`
+- Directory: `recipe-sharing-platform`
